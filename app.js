@@ -47,7 +47,7 @@ const LuisModelUrl = 'https://' + luisAPIHostName + '/luis/v1/application?id=' +
 var recognizer = new builder.LuisRecognizer(LuisModelUrl);
 var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 .matches('Greeting', (session) => {
-    session.send('Hi there \'%s\',', session.message.user.name);
+    session.send('Hi there, \%s\. I am Corian, Your Crown Connect Assistance. How can I help you today.', session.message.user.name);
 })
 .matches('Help', (session) => {
     session.send('You reached Help intent, you said \'%s\'.', session.message.text);
