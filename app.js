@@ -55,6 +55,9 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 .matches('Cancel', (session) => {
     session.send('You reached Cancel intent, you said \'%s\'.', session.message.text);
 })
+.matches('CrownConnect', (session) => {
+    session.send('Crown Connect is an ecosystem that provides capability to interconnect your organization with internal & external businesses, partners, customers and employees through various connection channels and business capabilities. It allows businesses to create and operate on new channels such as digital, social and mobile with secure, scalable and high performance.');
+})
 /*
 .matches('<yourIntent>')... See details at http://docs.botframework.com/builder/node/guides/understanding-natural-language/
 */
