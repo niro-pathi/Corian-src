@@ -47,16 +47,20 @@ const LuisModelUrl = 'https://' + luisAPIHostName + '/luis/v1/application?id=' +
 var recognizer = new builder.LuisRecognizer(LuisModelUrl);
 var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 .matches('Greeting', (session) => {
+    console.log('Intent : \'%s\'.',session.message.IntentDialog);
     session.send('Hi there, \%s\. I am Corian, Your Crown Connect Assistance. How can I help you today.', session.message.user.name);
 })
 .matches('CrownConnect', (session) => {
+    console.log('Intent : \'%s\'.',session.message.IntentDialog);
     session.send('Crown Connect is an ecosystem that provides capability to interconnect your organization with internal & external businesses, partners, customers and employees through various connection channels and business capabilities. It allows businesses to create and operate on new channels such as digital, social and mobile with secure, scalable and high performance.');
 })
 .matches('Help', (session) => {
+    console.log('Intent : \'%s\'.',session.message.IntentDialog);
     session.send('You reached Help intent, you said \'%s\'.', session.message.text);
 })
 .matches('Cancel', (session) => {
-    session.send('You reached Cancel intent, you said \'%s\'.', session.message.text);
+    console.log('Intent : \'%s\'.',session.message.IntentDialog);
+    session.send('You reached Cancel intent, you said \'%s\'.', session.message.IntentDialog);
 })
 /*
 .matches('<yourIntent>')... See details at http://docs.botframework.com/builder/node/guides/understanding-natural-language/
