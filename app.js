@@ -5,6 +5,7 @@ A simple echo bot for the Microsoft Bot Framework.
 var restify = require('restify');
 var builder = require('botbuilder');
 var botbuilder_azure = require("botbuilder-azure");
+var cognitiveservices = require("botbuilder-cognitiveservices");
 
 // Setup Restify Server
 var server = restify.createServer();
@@ -63,6 +64,12 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer, qnarecognizer
 .matches('CrownConnect', (session) => {
     session.send('Crown Connect is an ecosystem that provides capability to interconnect your organization with internal & external businesses, partners, customers and employees through various connection channels and business capabilities.');
 })
+.matches('FAQ', [
+    function (session, args, next) {
+        var answerEntity = builder.EntityRecognizer.findEntity(args.entities, 'answer');
+        session.send(answerEntity.entity);
+    }
+])
 .matches('Help', (session) => {
    session.send('You can ask me anything about Crown Connect.');
 })
