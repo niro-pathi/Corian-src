@@ -50,26 +50,26 @@ const LuisModelUrl = 'https://' + luisAPIHostName + '/luis/v1/application?id=' +
 // Recognizers
 //=========================================================
 
-var qnarecognizer = new cognitiveservices.QnAMakerRecognizer({
-	knowledgeBaseId: knowledgeBaseId, 
-	subscriptionKey: subscriptionKey,
-    top: 4});
+//var qnarecognizer = new cognitiveservices.QnAMakerRecognizer({
+//	knowledgeBaseId: knowledgeBaseId, 
+//	subscriptionKey: subscriptionKey,
+//    top: 4});
 
 // Main dialog with LUIS
 var recognizer = new builder.LuisRecognizer(LuisModelUrl);
-var intents = new builder.IntentDialog({ recognizers: [recognizer, qnarecognizer] })
+var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 .matches('Greeting', (session) => {
      session.send('Hi there, \%s\. I am Corion, Your Crown Connect Assistance. How can I help you today.', session.message.user.name);
 })
 .matches('CrownConnect', (session) => {
     session.send('Crown Connect is an ecosystem that provides capability to interconnect your organization with internal & external businesses, partners, customers and employees through various connection channels and business capabilities.');
 })
-.matches('FAQ', [
-    function (session, args, next) {
-        var answerEntity = builder.EntityRecognizer.findEntity(args.entities, 'answer');
-        session.send(answerEntity.entity);
-    }
-])
+//.matches('FAQ', [
+//    function (session, args, next) {
+//        var answerEntity = builder.EntityRecognizer.findEntity(args.entities, 'answer');
+//        session.send(answerEntity.entity);
+//    }
+//])
 .matches('Help', (session) => {
    session.send('You can ask me anything about Crown Connect.');
 })
