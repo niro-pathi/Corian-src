@@ -61,6 +61,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
 .matches('Greeting', (session) => {
      session.send('Hi there, \%s\. I am Corion, Your Crown Connect Assistance. How can I help you today.', session.message.user.name);
 })
+
 .matches('CrownConnect', (session) => {
     session.send('Crown Connect is an ecosystem that provides capability to interconnect your organization with internal & external businesses, partners, customers and employees through various connection channels and business capabilities.');
 })
@@ -77,8 +78,7 @@ var intents = new builder.IntentDialog({ recognizers: [recognizer] })
     session.send('Your request has been cancelled, as requested.');
 })
 .onDefault((session) => {
-    session.send('Sorry, this may be beyond my abilities at the moment.');
+    session.send("Sorry, this may be beyond my abilities at the moment.Try asking for 'help'");
 });
 
 bot.dialog('/', intents);    
-
